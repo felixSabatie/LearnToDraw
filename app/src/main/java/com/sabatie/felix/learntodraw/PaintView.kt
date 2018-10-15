@@ -53,6 +53,10 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         super.onSizeChanged(w, h, oldw, oldh)
 
         extraBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        resetCanvasContent()
+    }
+
+    private fun resetCanvasContent() {
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(bitmapBackgroundColor)
 
@@ -62,6 +66,8 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     fun resetDrawing() {
+        resetCanvasContent()
+        invalidate()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
