@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Apprends à écrire</string>
-    <string name="title_activity_draw_text">DrawText</string>
+  <string name="app_name">Apprends à écrire</string>
+  <string name="title_activity_draw_text">DrawText</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

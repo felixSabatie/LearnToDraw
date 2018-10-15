@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        responseText = findViewById(R.id.Response)
-        nextButton = findViewById(R.id.nextButton)
-        nextButton.visibility = View.INVISIBLE
+//        responseText = findViewById(R.id.Response)
+//        nextButton = findViewById(R.id.nextButton)
+//        nextButton.visibility = View.INVISIBLE
     }
 
     fun displayFalse(view: View) {
