@@ -47,14 +47,21 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
     private fun addResponses() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        game.questions.first().responses.forEach{
+        game.questions.first().responses.forEachIndexed{ index, element ->
             val fragment = ResponseButton()
             val args = Bundle()
-            args.putInt("background", ResourcesCompat.getColor(resources, R.color.backgroundColor1, null))
+
+            val background = when(index % 3) {
+                0 -> ResourcesCompat.getColor(resources, R.color.backgroundColor1, null)
+                1 -> ResourcesCompat.getColor(resources, R.color.backgroundColor2, null)
+                else -> ResourcesCompat.getColor(resources, R.color.backgroundColor3, null)
+            }
+
+            args.putInt("background", background)
             fragment.arguments = args
 
-            fragment.response = it
-            fragmentTransaction.add(responsesContainer.id, fragment, it.text)
+            fragment.response = element
+            fragmentTransaction.add(responsesContainer.id, fragment, element.text)
         }
         fragmentTransaction.commit()
     }
