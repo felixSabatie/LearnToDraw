@@ -2,16 +2,14 @@ package com.sabatie.felix.learntodraw
 
 import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     // send to bob.menelas@gmail.com
-    private lateinit var paintView: PaintView
     private lateinit var responseText: TextView
     private lateinit var nextButton: Button
 
@@ -21,11 +19,6 @@ class MainActivity : AppCompatActivity() {
         responseText = findViewById(R.id.Response)
         nextButton = findViewById(R.id.nextButton)
         nextButton.visibility = View.INVISIBLE
-
-//        paintView = findViewById(R.id.PaintView)
-//        val metrics = DisplayMetrics()
-//        windowManager.defaultDisplay.getMetrics(metrics)
-//        paintView.init(metrics)
     }
 
     fun displayFalse(view: View) {
@@ -46,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     fun navigate(view: View) {
         val writeView = Intent(view.context, DrawText::class.java)
+        writeView.putExtra("stringToDraw", "Chat")
         startActivity(writeView)
     }
 }
