@@ -34,34 +34,9 @@
       android:layout_weight="1"
       android:layout_gravity="center"
       android:paddingTop="10dp"
-      >
-      <TextView
-        android:layout_height="fill_parent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="Shat"
-        android:gravity="center"
-        android:onClick="displayFalse"
-        android:background="@color/backgroundColor1"
-        />
-      <TextView
-        android:layout_height="fill_parent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="Cha"
-        android:gravity="center"
-        android:onClick="displayFalse"
-        android:background="@color/backgroundColor2"
-        />
-      <TextView
-        android:layout_height="fill_parent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="Chat"
-        android:gravity="center"
-        android:onClick="displayTrue"
-        android:background="@color/backgroundColor3"
-        />
+      android:id="@+id/responsesContainer"
+      android:orientation="horizontal">
+
     </LinearLayout>
     <!--<TextView
             android:layout_width="wrap_content"
