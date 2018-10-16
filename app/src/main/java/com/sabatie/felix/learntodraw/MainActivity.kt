@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.sabatie.felix.learntodraw.game.GameFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startGame(v: View) {
-        CurrentGame.initGame()
+        CurrentGame.gamesList = GameFactory.createGames()
         val questionView = Intent(v.context, QuestionActivity::class.java)
         questionView.putExtra("question", CurrentGame.game.currentQuestion())
         startActivity(questionView)
