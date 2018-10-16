@@ -30,7 +30,11 @@
       android:name=".CongratulationsQuestion"
       android:screenOrientation="portrait">
     </activity>
-    <activity android:name=".CongratulationsGame"
+    <activity
+      android:name=".CongratulationsGame"
+      android:screenOrientation="portrait">
+    </activity>
+    <activity android:name=".ChooseCategory"
       android:screenOrientation="portrait">
     </activity>
   </application>
