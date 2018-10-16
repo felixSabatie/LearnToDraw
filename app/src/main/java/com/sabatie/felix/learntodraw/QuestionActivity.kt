@@ -38,6 +38,10 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
         addResponses()
     }
 
+    override fun onBackPressed() {
+        // Do nothing
+    }
+
     private fun addResponses() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

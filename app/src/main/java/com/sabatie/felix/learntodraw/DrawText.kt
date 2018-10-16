@@ -26,6 +26,10 @@ class DrawText : AppCompatActivity() {
         instructionsText.text = instructions
     }
 
+    override fun onBackPressed() {
+        // Do nothing
+    }
+
     fun resetCanvas(v: View) {
         paintView.resetDrawing()
     }
