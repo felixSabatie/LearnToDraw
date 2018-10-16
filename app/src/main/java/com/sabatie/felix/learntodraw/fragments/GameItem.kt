@@ -18,6 +18,7 @@ class GameItem: Fragment() {
 
     lateinit var gameTitle: TextView
     lateinit var gameImage: ImageView
+    lateinit var completedImage: ImageView
     lateinit var gameItemContainer: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +30,13 @@ class GameItem: Fragment() {
 
         gameTitle = inflatedView.findViewById(R.id.gameTitle)
         gameImage = inflatedView.findViewById(R.id.gameImage)
+        completedImage = inflatedView.findViewById(R.id.completedImage)
         gameItemContainer = inflatedView.findViewById(R.id.gameItemContainer)
         gameTitle.text = game.name
         gameImage.setImageResource(game.icon)
         gameItemContainer.setOnClickListener { listener?.onGameItemClick(game) }
+        if(!game.completed)
+            completedImage.visibility = View.INVISIBLE
 
         return inflatedView
     }

@@ -10,13 +10,28 @@
               android:orientation="vertical"
               android:id="@+id/gameItemContainer">
 
-    <ImageView
-            android:id="@+id/gameImage"
+    <RelativeLayout
             android:layout_height="200dp"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
+            android:layout_width="fill_parent">
+        <ImageView
+                android:id="@+id/gameImage"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
+
+        <ImageView
+                android:id="@+id/completedImage"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/completed"/>
+    </RelativeLayout>
 
     <TextView
             android:id="@+id/gameTitle"
