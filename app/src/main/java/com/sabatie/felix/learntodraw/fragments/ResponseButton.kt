@@ -28,7 +28,7 @@ class ResponseButton : Fragment() {
         val inflatedView = inflater.inflate(R.layout.fragment_response_button, container, false)
 
         containerLayout = inflatedView.findViewById(R.id.container)
-        containerLayout.setOnClickListener { view -> onResponseButtonClick(view) }
+        containerLayout.setOnClickListener { onResponseButtonClick() }
 
         responseTextView = inflatedView.findViewById(R.id.responseText)
         responseTextView.text = response.text
@@ -37,7 +37,7 @@ class ResponseButton : Fragment() {
         return inflatedView
     }
 
-    fun onResponseButtonClick(v: View?) {
+    private fun onResponseButtonClick() {
         listener?.onResponseClicked(response)
     }
 

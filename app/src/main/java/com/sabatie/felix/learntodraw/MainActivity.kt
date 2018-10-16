@@ -14,7 +14,7 @@ import com.sabatie.felix.learntodraw.game.Question
 import com.sabatie.felix.learntodraw.game.Response
 
 
-class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked {
+class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked, ResponseDialog.OnNextButtonClicked {
     // send to bob.menelas@gmail.com
 
     private lateinit var responseText: TextView
@@ -90,7 +90,11 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
         responseDialog.show(ft, "dialog")
     }
 
-    fun navigate(view: View) {
+    override fun onNextClick() {
+        navigate(findViewById(android.R.id.content))
+    }
+
+    private fun navigate(view: View) {
         val writeView = Intent(view.context, DrawText::class.java)
         writeView.putExtra("stringToDraw", "Chat")
         startActivity(writeView)

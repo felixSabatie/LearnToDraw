@@ -1,6 +1,7 @@
 package com.sabatie.felix.learntodraw.fragments
 
 import android.app.DialogFragment
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import com.sabatie.felix.learntodraw.R
 
 class ResponseDialog : DialogFragment() {
+    private var listener: OnNextButtonClicked? = null
 
     lateinit var dialogText: TextView
     lateinit var nextButton: Button
@@ -27,9 +29,34 @@ class ResponseDialog : DialogFragment() {
         dialogText = v.findViewById(R.id.dialogText)
         nextButton = v.findViewById(R.id.nextButton)
         resultImage = v.findViewById(R.id.resultImage)
-        arguments?.getInt("resultImage")?.let { resultImage.setImageResource(it) }
         arguments?.getString("resultText")?.let { dialogText.text = it }
+        arguments?.getInt("resultImage")?.let { resultImage.setImageResource(it) }
+        nextButton.setOnClickListener { onNextClick() }
 
         return v
     }
+
+    private fun onNextClick() {
+        dismiss()
+        listener?.onNextClick()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnNextButtonClicked) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnNextButtonClicked")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    interface OnNextButtonClicked {
+        fun onNextClick()
+    }
+
 }
