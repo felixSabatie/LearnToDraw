@@ -27,6 +27,8 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
+    private lateinit var textCanvas : Canvas
+    private lateinit var textBitmap: Bitmap
 
     // Colors
     private val bitmapBackgroundColor = ResourcesCompat.getColor(resources, R.color.bitmapBackgroundColor, null)
@@ -58,17 +60,19 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         super.onSizeChanged(w, h, oldw, oldh)
 
         extraBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        textBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         resetCanvasContent()
     }
 
     private fun resetCanvasContent() {
         extraCanvas = Canvas(extraBitmap)
-        extraCanvas.drawColor(bitmapBackgroundColor)
+        textCanvas = Canvas(textBitmap)
+        textCanvas.drawColor(bitmapBackgroundColor)
 
         setTextSize()
-        val centeredX = extraCanvas.width.toFloat() / 2
-        val centeredY = (extraCanvas.height / 2 - (textPaint.descent() + textPaint.ascent()) / 2)
-        extraCanvas.drawText(stringToDisplay, centeredX, centeredY, textPaint)
+        val centeredX = textCanvas.width.toFloat() / 2
+        val centeredY = (textCanvas.height / 2 - (textPaint.descent() + textPaint.ascent()) / 2)
+        textCanvas.drawText(stringToDisplay, centeredX, centeredY, textPaint)
     }
 
     // Set the text size to fit the screen width, with a padding of 25
@@ -119,6 +123,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     override fun onDraw(canvas: Canvas) {
         canvas.drawColor(0xFFAAAAAA.toInt())
+        canvas.drawBitmap(textBitmap, 0F, 0F, null)
         canvas.drawBitmap(extraBitmap, 0F, 0F, null)
     }
 }
