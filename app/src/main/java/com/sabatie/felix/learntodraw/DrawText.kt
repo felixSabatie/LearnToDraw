@@ -10,6 +10,7 @@ class DrawText : AppCompatActivity() {
     private lateinit var stringToDraw: String
     private lateinit var paintView: PaintView
     private lateinit var instructionsText: TextView
+    private var charIndex: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,11 +18,19 @@ class DrawText : AppCompatActivity() {
         supportActionBar?.hide()
 
         stringToDraw = intent.getStringExtra("stringToDraw")
+        if (intent.hasExtra("charIndex"))
+            charIndex = intent.getIntExtra("charIndex", -1)
 
         paintView = findViewById(R.id.paintView)
-        paintView.stringToDisplay = stringToDraw
+        paintView.stringToDisplay = if(charIndex == null) stringToDraw
+            else stringToDraw[charIndex!!].toString()
 
-        val instructions = "Maintenant, écris le mot \"$stringToDraw\" en suivant les traits"
+        val instructions = when (charIndex) {
+            0 -> "Maintenant, nous allons apprendre à écrire le mot \"$stringToDraw\" lettre par lettre. " +
+                        "Écris la lettre ${stringToDraw[charIndex!!]} en suivant le modèle :"
+            null, -1 -> "Maintenant, écris le mot en entier :"
+            else -> "Écris la lettre ${stringToDraw[charIndex!!]} en suivant le modèle :"
+        }
         instructionsText = findViewById(R.id.instructionsText)
         instructionsText.text = instructions
     }

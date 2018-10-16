@@ -95,7 +95,8 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
 
     private fun navigate(view: View) {
         val writeView = Intent(view.context, DrawText::class.java)
-        writeView.putExtra("stringToDraw", "Chat")
+        writeView.putExtra("stringToDraw", (question.responses.find { it.valid } as Response).text.toUpperCase())
+        writeView.putExtra("charIndex", 0)
         startActivity(writeView)
     }
 }

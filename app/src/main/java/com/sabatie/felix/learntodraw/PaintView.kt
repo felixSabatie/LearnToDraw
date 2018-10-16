@@ -6,11 +6,17 @@ import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.R.attr.width
+import android.graphics.Rect
+
+
 
 
 class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    private val TOUCH_TOLERANCE = 4F
+    private val touchTolerance = 4F
+    private val defaultTextSize = 300F
+    private val maxTextSize = 600F
 
     private var paint = Paint()
     private var path = Path()
@@ -46,7 +52,6 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         textPaint = Paint()
         textPaint.color = textToDrawColor
         textPaint.textAlign = Paint.Align.CENTER
-        textPaint.textSize = 300F
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -60,9 +65,19 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(bitmapBackgroundColor)
 
+        setTextSize()
         val centeredX = extraCanvas.width.toFloat() / 2
         val centeredY = (extraCanvas.height / 2 - (textPaint.descent() + textPaint.ascent()) / 2)
         extraCanvas.drawText(stringToDisplay, centeredX, centeredY, textPaint)
+    }
+
+    // Set the text size to fit the screen width, with a padding of 25
+    private fun setTextSize() {
+        textPaint.textSize = defaultTextSize
+        val bounds = Rect()
+        textPaint.getTextBounds(stringToDisplay, 0, stringToDisplay.count(), bounds)
+        val desiredTextSize = defaultTextSize * (extraBitmap.width - 50) / bounds.width()
+        textPaint.textSize = if(desiredTextSize < maxTextSize) desiredTextSize else maxTextSize
     }
 
     fun resetDrawing() {
@@ -87,7 +102,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private fun touchMove(x: Float, y: Float) {
         val dx = Math.abs(x - currentX)
         val dy = Math.abs(y - currentY)
-        if (dx > TOUCH_TOLERANCE || dy > TOUCH_TOLERANCE) {
+        if (dx > touchTolerance || dy > touchTolerance) {
             path.quadTo(currentX, currentY, (x + currentX) / 2, (y + currentY) / 2)
             currentX = x
             currentY = y
