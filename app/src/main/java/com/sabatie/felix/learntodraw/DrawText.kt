@@ -1,11 +1,13 @@
 package com.sabatie.felix.learntodraw
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import com.sabatie.felix.learntodraw.helpers.BitmapHelper
+import java.lang.IllegalArgumentException
 
 class DrawText : AppCompatActivity() {
 
@@ -49,8 +51,9 @@ class DrawText : AppCompatActivity() {
         if(charIndex == null) {
             val congratulationsQuestion = Intent(v.context, CongratulationsQuestion::class.java)
             congratulationsQuestion.putExtra("question", CurrentGame.game.currentQuestion())
-            CongratulationsQuestion.drawingBitmap = BitmapHelper.addPadding(
-                    BitmapHelper.trimBitmap(paintView.drawingBitmap), 10)
+
+            CongratulationsQuestion.drawingBitmap = getDrawingBitmap()
+
             startActivity(congratulationsQuestion)
         } else {
             val writeView = Intent(v.context, DrawText::class.java)
@@ -58,6 +61,15 @@ class DrawText : AppCompatActivity() {
             if(charIndex!! + 1 < stringToDraw.count())
                 writeView.putExtra("charIndex", charIndex!! + 1)
             startActivity(writeView)
+        }
+    }
+
+    private fun getDrawingBitmap(): Bitmap {
+        val paintedBitmap = paintView.drawingBitmap
+        return try {
+            BitmapHelper.addPadding(BitmapHelper.trimBitmap(paintedBitmap), 10)
+        } catch (e: IllegalArgumentException) {
+            paintedBitmap
         }
     }
 

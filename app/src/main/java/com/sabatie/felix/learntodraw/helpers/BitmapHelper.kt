@@ -74,7 +74,8 @@ class BitmapHelper {
                     break
             }
 
-
+            if(!(endWidth - startWidth > 0 && endHeight - startHeight > 0))
+                throw IllegalArgumentException()
             return Bitmap.createBitmap(
                     bmp,
                     startWidth,

@@ -34,7 +34,7 @@ class CongratulationsQuestion : AppCompatActivity() {
         drawingImage = findViewById(R.id.drawingImage)
         bottomButton = findViewById(R.id.bottomButton)
 
-        val congratulationsText = "Bravo ! Tu sais désormais écrire ${question.getResponseText()}"
+        val congratulationsText = "Bravo ! Tu sais désormais écrire \"${question.getResponseText()}\""
         congratulationsTextView.text = congratulationsText
         questionImage.setImageResource(question.image)
         drawingImage.setImageBitmap(drawingBitmap)
