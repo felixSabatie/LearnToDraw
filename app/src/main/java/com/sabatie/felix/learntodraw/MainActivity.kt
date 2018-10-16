@@ -1,24 +1,23 @@
 package com.sabatie.felix.learntodraw
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.sabatie.felix.learntodraw.fragments.ResponseButton
+import com.sabatie.felix.learntodraw.fragments.ResponseDialog
 import com.sabatie.felix.learntodraw.game.Game
 import com.sabatie.felix.learntodraw.game.Question
 import com.sabatie.felix.learntodraw.game.Response
+
 
 class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked {
     // send to bob.menelas@gmail.com
 
     private lateinit var responseText: TextView
-    private lateinit var nextButton: Button
     private lateinit var responsesContainer: LinearLayout
 
     private lateinit var game: Game
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
 
         responses.add(Response(false, "Shat"))
         responses.add(Response(false, "Cha"))
-        responses.add(Response(false, "Chat"))
+        responses.add(Response(true, "Chat"))
 
         questions.add(Question("Lequel de ces mots représente ce qui est sur l'image ?", responses))
 
@@ -68,24 +67,27 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
     }
 
     override fun onResponseClicked(response: Response) {
-        if (response.valid) displayTrue()
-        else displayFalse()
+        displayDialog(response.valid)
     }
 
-    private fun displayFalse() {
-        responseText.setTextColor(Color.RED)
-        responseText.text = "Mauvais réponse, il fallait dire \"Chat\" !"
-        displayNextButton()
-    }
+    private fun displayDialog(success: Boolean) {
+        val ft = fragmentManager.beginTransaction()
+        val prev = fragmentManager.findFragmentByTag("dialog")
+        if (prev != null) {
+            ft.remove(prev)
+        }
+        ft.addToBackStack(null)
+        val responseDialog = ResponseDialog()
 
-    private fun displayTrue() {
-        responseText.setTextColor(Color.GREEN)
-        responseText.text = "Bonne réponse !"
-        displayNextButton()
-    }
+        val args = Bundle()
+        val image = if(success) R.drawable.success else R.drawable.oops
+        val text = if(success) "Bravo ! C'était bien \"Chat !\""
+            else "Oops, il fallait dire \"Chat\" !"
 
-    private fun displayNextButton() {
-        nextButton.visibility = View.VISIBLE
+        args.putInt("resultImage", image)
+        args.putString("resultText", text)
+        responseDialog.arguments = args
+        responseDialog.show(ft, "dialog")
     }
 
     fun navigate(view: View) {

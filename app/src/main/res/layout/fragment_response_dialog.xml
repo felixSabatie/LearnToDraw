@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:id="@+id/container"
-             android:background="#AA404040"
-             tools:context=".fragments.ResponseDialog">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_height="wrap_content"
+  android:layout_width="wrap_content"
+  tools:context=".fragments.ResponseDialog"
+  android:background="#FFF"
+  android:orientation="vertical"
+  android:padding="15dp">
 
-    <TextView
-            android:id="@+id/dialogText"
-            android:layout_height="200dp"
-            android:layout_width="300dp"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:text="Test dialog"
-            android:background="#FFF"
+  <ImageView
+    android:id="@+id/resultImage"
+    android:layout_height="wrap_content"
+    android:layout_width="120dp"
+    android:layout_gravity="center"
+    android:adjustViewBounds="true"
+    android:scaleType="fitCenter"/>
+
+  <TextView
+    android:id="@+id/dialogText"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:gravity="center"
+    android:textSize="25sp"
     />
 
-</FrameLayout>
+  <Button
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:id="@+id/nextButton"
+    android:gravity="center"
+    android:layout_marginTop="10dp"
+    android:layout_gravity="center"
+    android:backgroundTint="@color/colorAccent"
+    android:textColor="#FFF"
+    android:text="Continuer"/>
+
+</LinearLayout>
