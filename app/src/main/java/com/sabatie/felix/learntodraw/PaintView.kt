@@ -6,7 +6,6 @@ import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.R.attr.width
 import android.graphics.Rect
 
 
@@ -25,8 +24,8 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     lateinit var stringToDisplay: String
     private lateinit var textPaint: Paint
 
-    private lateinit var extraCanvas: Canvas
-    private lateinit var extraBitmap: Bitmap
+    private lateinit var drawingCanvas: Canvas
+    lateinit var drawingBitmap: Bitmap
     private lateinit var textCanvas : Canvas
     private lateinit var textBitmap: Bitmap
 
@@ -59,13 +58,13 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        extraBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        drawingBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         textBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         resetCanvasContent()
     }
 
     private fun resetCanvasContent() {
-        extraCanvas = Canvas(extraBitmap)
+        drawingCanvas = Canvas(drawingBitmap)
         textCanvas = Canvas(textBitmap)
         textCanvas.drawColor(bitmapBackgroundColor)
 
@@ -80,7 +79,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         textPaint.textSize = defaultTextSize
         val bounds = Rect()
         textPaint.getTextBounds(stringToDisplay, 0, stringToDisplay.count(), bounds)
-        val desiredTextSize = defaultTextSize * (extraBitmap.width - 50) / bounds.width()
+        val desiredTextSize = defaultTextSize * (drawingBitmap.width - 50) / bounds.width()
         textPaint.textSize = if(desiredTextSize < maxTextSize) desiredTextSize else maxTextSize
     }
 
@@ -111,7 +110,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             currentX = x
             currentY = y
 
-            extraCanvas.drawPath(path, paint)
+            drawingCanvas.drawPath(path, paint)
         }
     }
 
@@ -124,6 +123,6 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     override fun onDraw(canvas: Canvas) {
         canvas.drawColor(0xFFAAAAAA.toInt())
         canvas.drawBitmap(textBitmap, 0F, 0F, null)
-        canvas.drawBitmap(extraBitmap, 0F, 0F, null)
+        canvas.drawBitmap(drawingBitmap, 0F, 0F, null)
     }
 }

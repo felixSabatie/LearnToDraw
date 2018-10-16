@@ -46,12 +46,10 @@ class DrawText : AppCompatActivity() {
 
     fun onNextClick(v: View) {
         if(charIndex == null) {
-            val question = CurrentGame.game.nextQuestion()
-            question?.run {
-                val questionView = Intent(v.context, QuestionActivity::class.java)
-                questionView.putExtra("question", this)
-                startActivity(questionView)
-            }
+            val congratulationsQuestion = Intent(v.context, CongratulationsQuestion::class.java)
+            congratulationsQuestion.putExtra("question", CurrentGame.game.currentQuestion())
+            CongratulationsQuestion.drawingBitmap = paintView.drawingBitmap
+            startActivity(congratulationsQuestion)
         } else {
             val writeView = Intent(v.context, DrawText::class.java)
             writeView.putExtra("stringToDraw", (stringToDraw))
