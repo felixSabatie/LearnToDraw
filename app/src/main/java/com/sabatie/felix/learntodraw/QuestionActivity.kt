@@ -24,6 +24,7 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_question)
 
         question = intent.extras?.getSerializable("question") as Question

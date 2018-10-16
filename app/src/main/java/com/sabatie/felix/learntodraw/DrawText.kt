@@ -14,6 +14,7 @@ class DrawText : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw_text)
+        supportActionBar?.hide()
 
         stringToDraw = intent.getStringExtra("stringToDraw")
 
