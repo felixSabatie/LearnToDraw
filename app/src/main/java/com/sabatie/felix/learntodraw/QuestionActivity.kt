@@ -1,16 +1,15 @@
 package com.sabatie.felix.learntodraw
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.sabatie.felix.learntodraw.fragments.ResponseButton
 import com.sabatie.felix.learntodraw.fragments.ResponseDialog
-import com.sabatie.felix.learntodraw.game.Game
 import com.sabatie.felix.learntodraw.game.Question
 import com.sabatie.felix.learntodraw.game.Response
 
@@ -65,8 +64,8 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
     }
 
     override fun onResponseClicked(response: Response) {
-        val answer = question.responses.find { it.valid } as Response
-            displayDialog(response.valid, answer.text)
+        val answer = question.getResponse()
+        displayDialog(response.valid, answer.text)
     }
 
     private fun displayDialog(success: Boolean, answer: String) {
@@ -79,8 +78,8 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
         val responseDialog = ResponseDialog()
 
         val args = Bundle()
-        val image = if(success) R.drawable.success else R.drawable.oops
-        val text = if(success) "Bravo ! C'était bien \"$answer !\""
+        val image = if (success) R.drawable.success else R.drawable.oops
+        val text = if (success) "Bravo ! C'était bien \"$answer !\""
         else "Oops, il fallait dire \"$answer\" !"
 
         args.putInt("resultImage", image)
@@ -95,7 +94,7 @@ class QuestionActivity : AppCompatActivity(), ResponseButton.OnResponseButtonCli
 
     private fun navigate(view: View) {
         val writeView = Intent(view.context, DrawText::class.java)
-        writeView.putExtra("stringToDraw", (question.responses.find { it.valid } as Response).text.toUpperCase())
+        writeView.putExtra("stringToDraw", question.getResponseText().toUpperCase())
         writeView.putExtra("charIndex", 0)
         startActivity(writeView)
     }

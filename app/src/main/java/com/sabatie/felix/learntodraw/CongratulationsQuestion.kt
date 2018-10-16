@@ -5,11 +5,9 @@ import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.sabatie.felix.learntodraw.game.Question
-import com.sabatie.felix.learntodraw.game.Response
 
 class CongratulationsQuestion : AppCompatActivity() {
 
@@ -36,8 +34,7 @@ class CongratulationsQuestion : AppCompatActivity() {
         drawingImage = findViewById(R.id.drawingImage)
         bottomButton = findViewById(R.id.bottomButton)
 
-        val congratulationsText = "Bravo ! Tu sais désormais écrire " +
-                (question.responses.find { it.valid } as Response).text
+        val congratulationsText = "Bravo ! Tu sais désormais écrire ${question.getResponseText()}"
         congratulationsTextView.text = congratulationsText
         questionImage.setImageResource(question.image)
         drawingImage.setImageBitmap(drawingBitmap)
