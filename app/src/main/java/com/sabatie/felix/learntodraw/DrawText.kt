@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
+import com.sabatie.felix.learntodraw.helpers.BitmapHelper
 
 class DrawText : AppCompatActivity() {
 
@@ -48,7 +49,8 @@ class DrawText : AppCompatActivity() {
         if(charIndex == null) {
             val congratulationsQuestion = Intent(v.context, CongratulationsQuestion::class.java)
             congratulationsQuestion.putExtra("question", CurrentGame.game.currentQuestion())
-            CongratulationsQuestion.drawingBitmap = paintView.drawingBitmap
+            CongratulationsQuestion.drawingBitmap = BitmapHelper.addPadding(
+                    BitmapHelper.trimBitmap(paintView.drawingBitmap), 10)
             startActivity(congratulationsQuestion)
         } else {
             val writeView = Intent(v.context, DrawText::class.java)
