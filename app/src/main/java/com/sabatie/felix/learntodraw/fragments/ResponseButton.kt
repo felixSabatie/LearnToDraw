@@ -1,4 +1,4 @@
-package com.sabatie.felix.learntodraw
+package com.sabatie.felix.learntodraw.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.sabatie.felix.learntodraw.R
 import com.sabatie.felix.learntodraw.game.Response
 
 

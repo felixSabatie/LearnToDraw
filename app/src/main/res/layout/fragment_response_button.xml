@@ -5,13 +5,15 @@
              android:layout_height="fill_parent"
              android:layout_weight="1"
              android:id="@+id/container"
-             tools:context=".ResponseButton">
+             tools:context=".fragments.ResponseButton">
 
     <TextView
             android:id="@+id/responseText"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="#FFF"
     />
 
 </FrameLayout>
