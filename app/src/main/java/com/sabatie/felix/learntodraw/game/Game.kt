@@ -18,4 +18,8 @@ class Game(private val questions: List<Question>, val name: String, val icon: In
     fun hasNext(): Boolean {
         return currentIndex + 1 < questions.count()
     }
+
+    fun resetGame() {
+        currentIndex = 0
+    }
 }

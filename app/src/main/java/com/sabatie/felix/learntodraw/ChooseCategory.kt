@@ -24,6 +24,7 @@ class ChooseCategory : AppCompatActivity(), GameItem.OnGameItemClick {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         CurrentGame.gamesList.forEach {
+            it.resetGame()
             val fragment = GameItem()
             fragment.game = it
             fragmentTransaction.add(gameItemsContainer.id, fragment, it.name)
