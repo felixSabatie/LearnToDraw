@@ -1,5 +1,6 @@
 package com.sabatie.felix.learntodraw
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -41,6 +42,23 @@ class DrawText : AppCompatActivity() {
 
     fun resetCanvas(v: View) {
         paintView.resetDrawing()
+    }
+
+    fun onNextClick(v: View) {
+        if(charIndex == null) {
+            val question = CurrentGame.game.nextQuestion()
+            question?.run {
+                val questionView = Intent(v.context, QuestionActivity::class.java)
+                questionView.putExtra("question", this)
+                startActivity(questionView)
+            }
+        } else {
+            val writeView = Intent(v.context, DrawText::class.java)
+            writeView.putExtra("stringToDraw", (stringToDraw))
+            if(charIndex!! + 1 < stringToDraw.count())
+                writeView.putExtra("charIndex", charIndex!! + 1)
+            startActivity(writeView)
+        }
     }
 
 }

@@ -55,6 +55,7 @@
           android:textColor="#FFF"
           android:textSize="20sp"
           android:gravity="center"
+          android:onClick="onNextClick"
           android:background="@color/colorPrimary"/>
 
     </LinearLayout>
