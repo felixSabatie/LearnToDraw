@@ -6,14 +6,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import com.sabatie.felix.learntodraw.game.Response
 
 
-class ResponseButton : Fragment(), View.OnClickListener {
+class ResponseButton : Fragment() {
     lateinit var response: Response
     private var listener: OnResponseButtonClicked? = null
     private lateinit var responseTextView: TextView
+    private lateinit var containerLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,9 @@ class ResponseButton : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val inflatedView = inflater.inflate(R.layout.fragment_response_button, container, false)
 
+        containerLayout = inflatedView.findViewById(R.id.container)
+        containerLayout.setOnClickListener { view -> onResponseButtonClick(view) }
+
         responseTextView = inflatedView.findViewById(R.id.responseText)
         responseTextView.text = response.text
         arguments?.getInt("background")?.let { responseTextView.setBackgroundColor(it) }
@@ -31,7 +36,7 @@ class ResponseButton : Fragment(), View.OnClickListener {
         return inflatedView
     }
 
-    override fun onClick(v: View?) {
+    fun onResponseButtonClick(v: View?) {
         listener?.onResponseClicked(response)
     }
 

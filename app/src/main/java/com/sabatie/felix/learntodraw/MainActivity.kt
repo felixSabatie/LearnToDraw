@@ -47,11 +47,11 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
     private fun addResponses() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        game.questions.first().responses.forEachIndexed{ index, element ->
+        game.questions.first().responses.forEachIndexed { index, element ->
             val fragment = ResponseButton()
             val args = Bundle()
 
-            val background = when(index % 3) {
+            val background = when (index % 3) {
                 0 -> ResourcesCompat.getColor(resources, R.color.backgroundColor1, null)
                 1 -> ResourcesCompat.getColor(resources, R.color.backgroundColor2, null)
                 else -> ResourcesCompat.getColor(resources, R.color.backgroundColor3, null)
@@ -67,16 +67,17 @@ class MainActivity : AppCompatActivity(), ResponseButton.OnResponseButtonClicked
     }
 
     override fun onResponseClicked(response: Response) {
-        println("${response.text} clicked")
+        if (response.valid) displayTrue()
+        else displayFalse()
     }
 
-    fun displayFalse(view: View) {
+    private fun displayFalse() {
         responseText.setTextColor(Color.RED)
         responseText.text = "Mauvais réponse, il fallait dire \"Chat\" !"
         displayNextButton()
     }
 
-    fun displayTrue(view: View) {
+    private fun displayTrue() {
         responseText.setTextColor(Color.GREEN)
         responseText.text = "Bonne réponse !"
         displayNextButton()
