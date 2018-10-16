@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     fun startGame(v: View) {
         CurrentGame.gamesList = GameFactory.createGames()
-        val questionView = Intent(v.context, QuestionActivity::class.java)
-        questionView.putExtra("question", CurrentGame.game.currentQuestion())
-        startActivity(questionView)
+        val gameChooserView = Intent(v.context, ChooseCategory::class.java)
+        startActivity(gameChooserView)
     }
 }

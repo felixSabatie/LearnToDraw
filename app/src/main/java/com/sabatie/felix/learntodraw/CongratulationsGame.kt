@@ -10,7 +10,7 @@ class CongratulationsGame : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        CurrentGame.game.completed = true
+        CurrentGame.game!!.completed = true
         setContentView(R.layout.activity_congratulations_game)
     }
 

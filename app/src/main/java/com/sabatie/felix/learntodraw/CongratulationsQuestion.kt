@@ -40,7 +40,7 @@ class CongratulationsQuestion : AppCompatActivity() {
         questionImage.setImageResource(question.image)
         drawingImage.setImageBitmap(drawingBitmap)
 
-        bottomButton.text = if (CurrentGame.game.hasNext()) "Question suivante" else "Continuer"
+        bottomButton.text = if (CurrentGame.game!!.hasNext()) "Question suivante" else "Continuer"
     }
 
     override fun onBackPressed() {
@@ -48,7 +48,7 @@ class CongratulationsQuestion : AppCompatActivity() {
     }
 
     fun onNextClick(v: View) {
-        val question = CurrentGame.game.nextQuestion()
+        val question = CurrentGame.game!!.nextQuestion()
         if(question != null) {
             val questionView = Intent(v.context, QuestionActivity::class.java)
             questionView.putExtra("question", question)

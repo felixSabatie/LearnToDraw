@@ -50,7 +50,7 @@ class DrawText : AppCompatActivity() {
     fun onNextClick(v: View) {
         if(charIndex == null) {
             val congratulationsQuestion = Intent(v.context, CongratulationsQuestion::class.java)
-            congratulationsQuestion.putExtra("question", CurrentGame.game.currentQuestion())
+            congratulationsQuestion.putExtra("question", CurrentGame.game!!.currentQuestion())
 
             CongratulationsQuestion.drawingBitmap = getDrawingBitmap()
 
