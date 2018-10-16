@@ -4,34 +4,39 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".MainActivity">
+  tools:context=".QuestionActivity">
 
   <LinearLayout
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/colorPrimary"
     >
     <TextView
-      android:text="Tu veux apprendre à écrire ? Clique sur moi, tu verras c'est facile !"
-      android:textSize="30sp"
+      android:id="@+id/questionText"
+      android:textSize="20sp"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:gravity="center"
-      android:textAlignment="center"
+      android:padding="5dp"
       android:paddingBottom="10dp"
-      android:textColor="#FFF"
       />
     <ImageView
-      android:layout_height="300dp"
+      android:id="@+id/questionImage"
+      android:layout_height="0dp"
       android:layout_width="wrap_content"
+      android:layout_weight="2"
       android:layout_gravity="center"
       android:adjustViewBounds="true"
-      android:scaleType="fitCenter"
-      android:onClick="startGame"
-      android:src="@drawable/success"/>
+      android:scaleType="fitCenter"/>
+    <LinearLayout
+      android:layout_height="0dp"
+      android:layout_width="fill_parent"
+      android:layout_weight="1"
+      android:layout_gravity="center"
+      android:paddingTop="10dp"
+      android:id="@+id/responsesContainer"
+      android:orientation="horizontal">
 
+    </LinearLayout>
   </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
