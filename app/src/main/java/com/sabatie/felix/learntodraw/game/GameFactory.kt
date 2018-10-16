@@ -34,9 +34,9 @@ class GameFactory {
             val responses = ArrayList<Response>()
             val questions = ArrayList<Question>()
 
-            responses.add(Response(false, "Princesse"))
+            responses.add(Response(true, "Princesse"))
             responses.add(Response(false, "Princèce"))
-            responses.add(Response(true, "Prinssesse"))
+            responses.add(Response(false, "Prinssesse"))
 
             questions.add(Question("Lequel de ces mots représente ce qui est sur l'image ?",
                     responses, R.drawable.princess))
