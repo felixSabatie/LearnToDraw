@@ -2,8 +2,8 @@ package com.sabatie.felix.learntodraw
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,6 +17,7 @@ class CongratulationsQuestion : AppCompatActivity() {
     private lateinit var bottomButton: TextView
 
     private lateinit var question: Question
+
     companion object {
         lateinit var drawingBitmap: Bitmap
     }
@@ -38,7 +39,8 @@ class CongratulationsQuestion : AppCompatActivity() {
         congratulationsTextView.text = congratulationsText
         questionImage.setImageResource(question.image)
         drawingImage.setImageBitmap(drawingBitmap)
-        bottomButton.text = "Question suivante"
+
+        bottomButton.text = if (CurrentGame.game.hasNext()) "Question suivante" else "Continuer"
     }
 
     override fun onBackPressed() {
@@ -47,10 +49,13 @@ class CongratulationsQuestion : AppCompatActivity() {
 
     fun onNextClick(v: View) {
         val question = CurrentGame.game.nextQuestion()
-        question?.run {
+        if(question != null) {
             val questionView = Intent(v.context, QuestionActivity::class.java)
-            questionView.putExtra("question", this)
+            questionView.putExtra("question", question)
             startActivity(questionView)
+        } else {
+            val congratulationsView = Intent(v.context, CongratulationsGame::class.java)
+            startActivity(congratulationsView)
         }
     }
 }

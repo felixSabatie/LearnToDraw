@@ -26,7 +26,11 @@
       android:name=".QuestionActivity"
       android:screenOrientation="portrait">
     </activity>
-    <activity android:name=".CongratulationsQuestion"
+    <activity
+      android:name=".CongratulationsQuestion"
+      android:screenOrientation="portrait">
+    </activity>
+    <activity android:name=".CongratulationsGame"
       android:screenOrientation="portrait">
     </activity>
   </application>
