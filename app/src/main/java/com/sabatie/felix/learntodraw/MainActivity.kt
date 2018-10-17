@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.sabatie.felix.learntodraw.game.GameFactory
 
 
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         CurrentGame.gamesList.forEach {
             it.completed = preferences.getBoolean("${it.name}_completed", false)
         }
-        val gameChooserView = Intent(v.context, ChooseCategory::class.java)
+        val gameChooserView = Intent(v.context, ChooseGame::class.java)
         startActivity(gameChooserView)
     }
 }

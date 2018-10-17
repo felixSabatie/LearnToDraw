@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import com.sabatie.felix.learntodraw.fragments.GameItem
 import com.sabatie.felix.learntodraw.game.Game
 
-class ChooseCategory : AppCompatActivity(), GameItem.OnGameItemClick {
+class ChooseGame : AppCompatActivity(), GameItem.OnGameItemClick {
     lateinit var gameItemsContainer: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {

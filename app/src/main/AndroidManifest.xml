@@ -34,7 +34,7 @@
       android:name=".CongratulationsGame"
       android:screenOrientation="portrait">
     </activity>
-    <activity android:name=".ChooseCategory"
+    <activity android:name=".ChooseGame"
       android:screenOrientation="portrait">
     </activity>
   </application>

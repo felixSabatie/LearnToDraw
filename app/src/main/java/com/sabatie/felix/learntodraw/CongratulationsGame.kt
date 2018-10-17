@@ -28,7 +28,7 @@ class CongratulationsGame : AppCompatActivity() {
     }
 
     fun onHomescreenClick(v: View) {
-        val homeView = Intent(v.context, ChooseCategory::class.java)
+        val homeView = Intent(v.context, ChooseGame::class.java)
         homeView.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(homeView)
     }
