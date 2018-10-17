@@ -9,8 +9,6 @@ import com.sabatie.felix.learntodraw.game.GameFactory
 
 
 class MainActivity : AppCompatActivity() {
-    // send to bob.menelas@gmail.com
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
