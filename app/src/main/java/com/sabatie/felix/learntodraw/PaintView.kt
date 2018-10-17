@@ -33,6 +33,7 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val bitmapBackgroundColor = ResourcesCompat.getColor(resources, R.color.bitmapBackgroundColor, null)
     private val drawingColor = ResourcesCompat.getColor(resources, R.color.drawingColor, null)
     private val textToDrawColor = ResourcesCompat.getColor(resources, R.color.textToDrawColor, null)
+    private val transparentColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
     init {
         initPaint()
@@ -58,12 +59,12 @@ class PaintView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        drawingBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         textBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         resetCanvasContent()
     }
 
     private fun resetCanvasContent() {
+        drawingBitmap = Bitmap.createBitmap(textBitmap.width, textBitmap.height, Bitmap.Config.ARGB_8888)
         drawingCanvas = Canvas(drawingBitmap)
         textCanvas = Canvas(textBitmap)
         textCanvas.drawColor(bitmapBackgroundColor)

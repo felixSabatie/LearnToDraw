@@ -20,19 +20,23 @@
     </activity>
     <activity
       android:name=".DrawText"
-      android:screenOrientation="portrait">
+      android:screenOrientation="portrait"
+      android:noHistory="true">
     </activity>
     <activity
       android:name=".QuestionActivity"
-      android:screenOrientation="portrait">
+      android:screenOrientation="portrait"
+      android:noHistory="true">
     </activity>
     <activity
       android:name=".CongratulationsQuestion"
-      android:screenOrientation="portrait">
+      android:screenOrientation="portrait"
+      android:noHistory="true">
     </activity>
     <activity
       android:name=".CongratulationsGame"
-      android:screenOrientation="portrait">
+      android:screenOrientation="portrait"
+      android:noHistory="true">
     </activity>
     <activity android:name=".ChooseGame"
       android:screenOrientation="portrait">
