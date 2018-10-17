@@ -1,5 +1,8 @@
 package com.sabatie.felix.learntodraw
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -30,6 +33,27 @@ class ChooseGame : AppCompatActivity(), GameItem.OnGameItemClick {
             fragmentTransaction.add(gameItemsContainer.id, fragment, it.name)
         }
         fragmentTransaction.commit()
+    }
+
+    fun onDeleteClick(v: View) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setMessage("Est-tu sûr(e) de vouloir effacer ta progression ?")
+                .setTitle("Effacer la progression")
+
+        builder.setPositiveButton("Oui") { _, _ -> resetProgression() }
+        builder.setNegativeButton("Annuler") { _, _ -> resetProgression() }
+        builder.show()
+    }
+
+    private fun resetProgression() {
+        val preferences = this.getSharedPreferences(getString(R.string.preferences_file), Context.MODE_PRIVATE) ?: return
+        CurrentGame.gamesList.forEach {
+            it.completed = false
+            preferences.edit().putBoolean("${it.name}_completed", false).apply()
+        }
+        finish()
+        startActivity(Intent(this, ChooseGame::class.java))
+        overridePendingTransition(0, 0)
     }
 
     override fun onBackPressed() {

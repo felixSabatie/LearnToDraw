@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ChooseGame">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context=".ChooseGame">
 
 
     <LinearLayout
@@ -26,6 +27,16 @@
                 android:id="@+id/gameItemsContainer"
                 android:orientation="horizontal"
                 android:layout_weight="1"/>
+
+        <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fab"
+          android:onClick="onDeleteClick"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|bottom"
+          android:src="@drawable/bin"
+          android:layout_margin="16dp"
+          app:backgroundTint="@color/red"/>
 
     </LinearLayout>
 
